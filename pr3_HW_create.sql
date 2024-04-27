@@ -1,0 +1,30 @@
+CREATE TABLE [Departments_HW] (
+    Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [Financing] MONEY NOT NULL CHECK ([Financing] >= 0),
+    [Name] NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE [Faculties_HW] (
+    Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [Dean] NVARCHAR(MAX) NOT NULL,
+    [Name] NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Groups_HW (
+    Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [Name] NVARCHAR(10) NOT NULL UNIQUE,
+    [Rating] INT NOT NULL CHECK ([Rating] BETWEEN 0 AND 5),
+    [Year] INT NOT NULL CHECK ([Year] BETWEEN 1 AND 5)
+);
+
+CREATE TABLE [Teachers_HW] (
+    Id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [EmploymentDate] DATE NOT NULL CHECK ([EmploymentDate] >= '1990-01-01'),
+    [IsAssistant] BIT NOT NULL DEFAULT 0,
+    [IsProfessor] BIT NOT NULL DEFAULT 0,
+    [Name] NVARCHAR(MAX) NOT NULL,
+    [Position] NVARCHAR(MAX) NOT NULL,
+    [Premium] MONEY NOT NULL CHECK (Premium >= 0) DEFAULT 0,
+    [Salary] MONEY NOT NULL CHECK (Salary > 0),
+    [Surname] NVARCHAR(MAX) NOT NULL
+);
